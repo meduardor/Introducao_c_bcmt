@@ -4,31 +4,32 @@
 #include <string.h>
 
 
+void diaAniver (char d[2]) { scanf(" %[^\n]s", d); }
 
+void mesAniver (char x[2]) { scanf(" %s", x); }
 
 int main()
 {
-  int dia, mes;
-  int ano;
+  int dia, ano;
 
-  char dia_s[2], mes_s[2];
+  char dia_s[2];
+  char mes_s[2];
 
+  // Dia do aniversario
+  printf("Digite o Dia do aniversario:\n");
+  diaAniver(dia_s);
 
-  printf("Digite o dia do aniversario:\n");
-  scanf("%d", &dia);
-
-  //FIXME: Retorno da string esta acrescentando um valor um valor à mais
-  // na string.
-  sprintf(dia_s,"%d",dia);
-
+  // Mês do aniversario
   printf("Digite o Mês do seu aniversario:\n");
-  scanf("%d", &mes);
+  mesAniver(mes_s);
 
-  //FIXME: Retorno da string esta acrescentando um valor no 0.
-  sprintf(mes_s,"%d", mes);
+  // Ano do aniversario.  
   printf("Digite o Ano do seu aniversario:\n");
   scanf("%d", &ano);
 
+  // Teste de saida 
+  printf("Dia:%s,Mes:%s\n", dia_s, mes_s);
+  
   // concatenação dos elementos 
   strcat(dia_s, mes_s);
   
