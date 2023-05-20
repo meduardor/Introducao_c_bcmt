@@ -89,7 +89,54 @@ extern void handle_events(void)
 extern void update_game(void)
 {
   pthread_mutex_lock(&mutex);
+
+  bola.x += bola.dx;
+  bola.y += bola.dy;
+
+  if(bola.y <= 0 || bola.y >= SCREEN_HEIGHT - BOLA_SIZE){
+    bola.dy = -bola.dy;
+  }
+
+  if (bola.x <= PRANCHA_WIDTH && bola.y >= prancha1.y && bola.y <= prancha1.y + PRANCHA_HEIGHT){
+    bola.dx = -bola.dx;
+  }
+
+  if (bola.x >= SCREEN_WIDTH - PRANCHA_WIDTH - BOLA_SIZE && bola.y >= prancha2.y && bola.y <= prancha2.y + PRANCHA_HEIGHT) {
+    bola.dx = -bola.dx;
+  }
+
+  if (bola.x <= 0 || bola.x >= SCREEN_WIDTH - BOLA_SIZE) {
+    quit = true;
+  }
+
+    pthread_mutex_unlock(&mutex);
 }
+
+
+// Renderiação do Jogo
+extern int render_game(SDL_Renderer* render)
+{
+  pthread_mutex_lock(&mutex);
+
+  SDL_SetRenderDrawColor(render,0 ,0 ,0 ,255);
+  SDL_RenderClear(render);
+
+  SDL_SetRenderDrawColor(render,255 ,255 ,255 ,255);
+
+  SDL_Rect bolaRect = { bola.x, bola.y, BOLA_SIZE, BOLA_SIZE};
+  SDL_RenderFillRect(render, &bolaRect);
+  
+  return 0;
+}
+
+// Uso de Threads do CPU 
+extern void game_thread(void* arg)
+{
+  
+}
+
+
+
 
 int main(void)
 {
