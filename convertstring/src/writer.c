@@ -3,33 +3,24 @@
 
 #include "writer.h"
 
-// "Class" -> FIXME: change name
-struct values_convert value;
-
 // Converte um valor int em um valor string
-char converf(int m)
-{
-  m = value.mes;
-  scanf("%d", &m);
-  
-  char mes[2];
-  char result = sprintf(mes,"%d", m); 
-  
-  return result;
+extern char converf(int value, char str[])
+{  
+  return sprintf(str,"%02d", value);  
 }
 
-// Concatena duas strings
-char conca_string_split(char m, char d)
+// Leitura de string e conacatenação de dois valores.
+extern char leia_entrada (char d[3], char c[3], char result[10]) 
 {
+   scanf("%s/%s", d, c);
   
-  char* result = strcat(m, d);
-  
-  return *result;
+  strcpy(result, d);
+  strcat(result, c); 
+   return 0; 
 }
 
-// Converte um valor integer em um valor string 
-// Uma forma um pouco mais eficiente que a primeira função convertf
-char* itoa(int value, char* result, int base)
+
+extern char* itoa(int value, char* result, int base)
 {
   // check that the base if valid
   if (base < 2 || base > 36) { *result = '\0'; return result; }
@@ -53,3 +44,5 @@ char* itoa(int value, char* result, int base)
     }
   return result;
 }
+
+
