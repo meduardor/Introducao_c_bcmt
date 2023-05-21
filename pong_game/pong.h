@@ -6,7 +6,9 @@
 
 
 #define SCREEN_WIDTH 640
+#define SCREEN_WIDTH_LEFT 640
 #define SCREEN_HEIGHT 480
+#define SCREEN_HEIGHT_DOWN 480
 #define PRANCHA_WIDTH 20
 #define PRANCHA_HEIGHT 100
 #define BOLA_SIZE 10
@@ -33,7 +35,7 @@ extern int initial(SDL_Window** window, SDL_Renderer** render);
 extern int render_game(SDL_Renderer* render);
 extern void update_game(void);
 extern void handle_events(void);
-extern void game_thread(void* arg);
-extern void menu(void);
+extern void* game_thread(void* arg);
+
 
 #endif
