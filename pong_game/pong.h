@@ -36,6 +36,6 @@ extern int render_game(SDL_Renderer* render);
 extern void update_game(void);
 extern void handle_events(void);
 extern void* game_thread(void* arg);
-
+extern void menu(void);
 
 #endif
