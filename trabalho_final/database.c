@@ -4,7 +4,7 @@
 
 int access_database(int matriz[150][5], char arquivo[], FILE *input, char text)
 {
-  float n, m;
+  float n, m = 0.0;
   input = fopen(arquivo, "r");
   if(input == NULL){printf("Error");}
 
@@ -13,6 +13,7 @@ int access_database(int matriz[150][5], char arquivo[], FILE *input, char text)
       printf("%d", matriz[i][j]);
     }
   }
+  return 0;
 }
 
 

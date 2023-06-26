@@ -23,8 +23,8 @@
 int main(void)
 {
   char arq[] = ARQUIVO;
-  FILE *input;
-  char ch;
+  FILE *input = NULL;
+  char ch= '\0';
   int matriz[150][5];
   access_database(matriz, arq,input ,ch);
 
