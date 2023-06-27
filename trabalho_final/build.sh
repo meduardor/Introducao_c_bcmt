@@ -9,11 +9,11 @@ CFLAGS="-Wall -Wextra -lm -Wformat=2 -Wint-conversion -Wnewline-eof -pedantic -s
 
 
 ## Lista dos arquivos C
-SOURCES="iris.c database.c"
+SOURCES="iris.c database.c parser_csv.c"
 
 
 ## Lista dos Headers
-HEADERS="database.h"
+HEADERS="database.h parser_csv.h"
 
 
 ## Nome do Programa

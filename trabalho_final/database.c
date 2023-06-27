@@ -1,10 +1,11 @@
 
+#include <stddef.h>
 #include <stdio.h>
 #include "database.h"
 
 int access_database(int matriz[150][5], char arquivo[], FILE *input, char text)
 {
-  float n, m = 0.0;
+  float n = 0.0, m = 0.0;
   input = fopen(arquivo, "r");
   if(input == NULL){printf("Error");}
 

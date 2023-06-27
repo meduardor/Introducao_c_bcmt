@@ -1,4 +1,4 @@
-#ifndef DATABASE_H
+#if !defined (DATABASE_H)
 #define DATABASE_H
 
 #include <bits/types/FILE.h>

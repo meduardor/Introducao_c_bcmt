@@ -15,20 +15,22 @@
 */
 
 #include <stdio.h>
-#include "database.h"
+#include<string.h>
 
-#define ARQUIVO "iris.csv"
+#include "database.h"
+#include "parser_csv.h"
+
+#define MAX_ROWS 151
+
 // MatrizIris matriz_iris;
 
 int main(void)
 {
-  char arq[] = ARQUIVO;
+  char *arq[MAX_ROWS];
   FILE *input = NULL;
-  char ch= '\0';
-  int matriz[150][5];
-  access_database(matriz, arq,input ,ch);
-
-  
- 
+  char *ch = NULL;
+  int *matriz = NULL;
+  //access_database(matriz, arq,input ,ch);
+  get_access_data_csv(arq, ch ,matriz); 
   return 0;
 }
