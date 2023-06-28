@@ -2,10 +2,12 @@
 
 
 ## Compilador 
-CC="clang"
+# CC="clang"
+CC="gcc"
+
 
 ## Flags 
-CFLAGS="-Wall -Wextra -lm -Wformat=2 -Wint-conversion -Wnewline-eof -pedantic -std=c99" 
+CFLAGS="-Wall -Wextra -lm -Wformat=2 -Wint-conversion -pedantic -std=c99" 
 
 
 ## Lista dos arquivos C

@@ -20,17 +20,26 @@
 #include "database.h"
 #include "parser_csv.h"
 
-#define MAX_ROWS 151
+
+
+#define ARQUIVO "iris.csv"
+#define COLUNAS 755
+#define LINHAS 200
+#define CELULAS 755
 
 // MatrizIris matriz_iris;
 
 int main(void)
 {
-  char *arq[MAX_ROWS];
   FILE *input = NULL;
-  char *ch = NULL;
-  int *matriz = NULL;
-  //access_database(matriz, arq,input ,ch);
-  get_access_data_csv(arq, ch ,matriz); 
+  input = fopen(ARQUIVO,"r");
+  /* char *matriz[LINHAS][COLUNAS]; */
+  /* char linha[LINHAS][CELULAS]; */
+  u_int num_linha = 0, num_coluna = 0;
+  
+  
+  /* get_access_data_csv(arq, linha, num_linha);  */
+
+  print_matriz_iris(input, LINHAS, COLUNAS, CELULAS, num_linha, num_coluna);
   return 0;
 }

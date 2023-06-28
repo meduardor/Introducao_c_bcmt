@@ -11,11 +11,7 @@ struct MatrizIris{
 };
 
 // Acesso ao banco de dados
-int access_database(int matriz[150][5], char arquivo[], FILE *input, char text);
-
-// Pegando dados
-float get_data_caracteres(int matriz[150][4], float n, float m);
-
+int access_database(char arquivo[], FILE *input, char text);
 
 // Fatiando os dadods do banco
 int slice_data(void* name);
