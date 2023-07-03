@@ -6,15 +6,9 @@
 #include"parser_csv.h"
 
 
-
-
 MatrizIris matrix;
 
-int access_database(char *arquivo){
-
-  FILE *f;
-  f = fopen(arquivo,"r");
-
-
-  return 0;
-}
+double calc_moda_iris();
+double calc_mediana_iris();
+double calc_media_iris();
+double calc_desvio_padrao_iris();

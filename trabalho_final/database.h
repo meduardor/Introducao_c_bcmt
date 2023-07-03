@@ -2,17 +2,28 @@
 #define DATABASE_H
 
 
-typedef struct {
-  char   attr[1][5];
-  int    chart[150][4];
-  char   tipo[150][1];
-  
-} MatrizIris;
-// Acesso ao banco de dados
-int access_database(char *arquivo);
+#define MAX_ROWS 755
+#define MAX_COLS 200
 
-// Fatiando os dadods do banco
-int slice_data(void* name);
+
+typedef struct {
+    double data[MAX_ROWS];
+    int size;
+} ColumnData;
+
+typedef struct {
+        ColumnData data[MAX_COLS];
+        int size;
+    } CSVData;
+
+
+// Funções     
+void data_set();
+
+double calc_moda_iris();
+double calc_mediana_iris();
+double calc_media_iris();
+double calc_desvio_padrao_iris();
 
 
 #endif

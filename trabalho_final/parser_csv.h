@@ -6,24 +6,51 @@ typedef unsigned int u_int;
 typedef unsigned char u_char;
 
 // Constantes
-#define Max_line 755
+#define Max_line 152
 #define Max_cols 100
 
+
 /* strcut arrays */
-typedef struct  {
-  u_int matrix[Max_line][Max_cols];
-  int num_line;
-  int num_cols;
-}Arrays;
+typedef struct {
+  char   attr[1][5];
+  int   chart[150][4];
+  char   tipo[150][1];
+  
+} MatrizIris;
+
+
+struct Arrays {
+  char * comp_sep[Max_line];
+  char *larg_sep[Max_line];  
+  char *comp_pet[Max_line];
+  char *larg_pet[Max_line];
+  char *tipo[Max_line];
+  
+};
+
+typedef struct array {
+  int size;
+  int max;
+  int *v;
+} Array;
+
 
 
 // Função para fazer a leitura do documento e inserir dentro da estrutura `arrays`.
-int get_access_data_csv(char *arquivo, char *text[],
-			const u_int max_coluna, u_int *number_coluna);
+char  get_access_data_csv(char *arquivo, char *text[],
+			const int max_coluna, int *number_coluna);
 
-u_int matriz_iris(char *file, const u_int linha,
-		 const u_int coluna, u_int num_linha, u_int num_coluna);
 
-u_int separate_in_array(Arrays arr);
+int array_comp_sep(char *file, int num_linha, int num_coluna, int coluna,
+                   int linha);
+
+void insertion_sort(float *Lst, int n);
+
+int erase(char* arr, int index);
+
+void erase_float(float* array, int tam, int n);
+
+void sortList(float* list, int size);
+
 
 #endif
