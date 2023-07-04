@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#define MAX_ROWS 1000
+#define MAX_COLS 10
+#define MAX_CELL_SIZE 100
+
+typedef struct {
+    double data[MAX_ROWS];
+    int size;
+} ColumnData;
+
+void split_csv_line(char *line, char *columns[], int *num_columns) {
+    *num_columns = 0;
+    char *token = strtok(line, ",");
+    while (token != NULL && *num_columns < MAX_COLS) {
+        columns[*num_columns] = token;
+        (*num_columns)++;
+        token = strtok(NULL, ",");
+    }
+}
+
+double calculate_mean(ColumnData column) {
+    double sum = 0.0;
+    for (int i = 0; i < column.size; i++) {
+        sum += column.data[i];
+    }
+    return sum / column.size;
+}
+
+double calculate_median(ColumnData column) {
+    int middle = column.size / 2;
+    if (column.size % 2 == 0) {
+        return (column.data[middle - 1] + column.data[middle]) / 2.0;
+    } else {
+        return column.data[middle];
+    }
+}
+
+double calculate_standard_deviation(ColumnData column) {
+    double mean = calculate_mean(column);
+    double sum_sq_diff = 0.0;
+    for (int i = 0; i < column.size; i++) {
+        double diff = column.data[i] - mean;
+        sum_sq_diff += diff * diff;
+    }
+    double variance = sum_sq_diff / column.size;
+    return sqrt(variance);
+}
+
+int main() {
+    FILE *file = fopen("arquivo.csv", "r");
+    if (!file) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    char line[MAX_ROWS][MAX_CELL_SIZE];
+    char *columns[MAX_COLS][MAX_ROWS];
+    int num_columns = 0;
+    int num_rows = 0;
+
+    char buffer[MAX_CELL_SIZE];
+    while (fgets(buffer, sizeof(buffer), file) != NULL && num_rows < MAX_ROWS) {
+        strcpy(line[num_rows], buffer);
+        split_csv_line(line[num_rows], columns[num_rows], &num_columns);
+        num_rows++;
+    }
+
+    fclose(file);
+
+    // Definir a struct para armazenar as colunas
+    typedef struct {
+        ColumnData data[MAX_COLS];
+        int size;
+    } CSVData;
+
+    // Preencher a struct com os dados das colunas
+    CSVData csvData;
+    csvData.size = num_columns;
+
+    for (int i = 0; i < num_columns; i++) {
+        csvData.data[i].size = num_rows;
+        for (int j = 0; j < num_rows; j++) {
+            csvData.data[i].data[j] = atof(columns[j][i]);
+        }
+    }
+
+    // Exemplo de como calcular e imprimir média, mediana e desvio padrão das colunas
+    for (int i = 0; i < csvData.size; i++) {
+        printf("Coluna %d:\n", i + 1);
+        ColumnData column = csvData.data[i];
+        double mean = calculate_mean(column);
+        double median = calculate_median(column);
+        double std_deviation = calculate_standard_deviation(column);
+        printf("Média: %.2f\n", mean);
+        printf("Mediana: %.2f\n",
+
