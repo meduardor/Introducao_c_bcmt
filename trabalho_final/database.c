@@ -42,12 +42,13 @@ int totalElemet(int total_linha, int total_colunas) {
   return contador;
 }
 
+// Função que que printa o maior e menor valor de um array
 void max_min(float arr[], int tam, float *max, float *min) {
   *max = arr[0];
   *min = arr[0];
 
 
-  for (int i = 0; i < tam; i++){
+  for (int i = 1; i < tam; i++){
 
     if (arr[i] > *max){
       *max = arr[i];
@@ -59,25 +60,12 @@ void max_min(float arr[], int tam, float *max, float *min) {
 }
 
 
-/*   for (int i = 0; i<LINHAS; i++){ */
-/*     if(a == 0){maior = Notas[a]; menor = Notas[a];} */
-/*     if(Notas[a] > maior){ */
-/*       maior = Notas[a]; */
-/*     }else{ */
-/*       if(Notas[a] < menor){ */
-/* 	menor = Notas[a]; */
-/*       } */
-/*     } */
-/* } */
-
-
-
-
+// Função o número maximo da matrix
 float max_matriz(float arr[], int tam) {
   int col = 0;
   float max = arr[col]; 
 
-  for (col = 0; col < tam; col++){
+  for (col = 1; col < tam; col++){
     max = arr[col];
     if (arr[col] > max){
       max = arr[col];
@@ -87,23 +75,13 @@ float max_matriz(float arr[], int tam) {
   return max;
 }
 
-float encontrarMenorValor(float array[], int tamanho) {
-    float menor = FLT_MAX; // Inicializa o menor valor com um valor máximo possível
-
-    for (int i = 0; i < tamanho; i++) {
-        if (array[i] < menor) {
-            menor = array[i]; // Atualiza o valor do menor elemento
-        }
-    }
-
-    return menor;
-}
-
+// Função que retorna o menor valor do array 
+// TODO:Erro no retorno dp valor 
 float min_matriz(float arr[], int tam) {
   int col;
   float min; 
 
-  for (col = 0; col < tam; col++){
+  for (col = 1; col < tam; col++){
     if (arr[col] < min){
       min = arr[col];
     }

@@ -16,6 +16,6 @@ float tam_list(float arr[]);
 
 float max_matriz(float arr[], int tam);
 float min_matriz(float arr[], int tam);
-float encontrarMenorValor(float array[], int tamanho);
+
 
 #endif

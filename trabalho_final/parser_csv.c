@@ -98,13 +98,19 @@ void atributo_name(char *matriz[151][5], char *arr[],
   
 }
 
-int ocorr(char *tipos[], char *name[], int tamanho)
+// TODO(Marco):Conserta leitura de ocorrencia dos valores `char`
+int ocorr(char tipos[MAXLINE], char name[], int tamanho)
 {
-  int contador = 1; 
-  int i, ret;
-  for (int i = 0; i < tamanho; i++){
-    if(tipos[i] == name[i]){
-      contador++;
+  int contador = 0; 
+  int i, j;
+  /* char *n; */
+  /* n = name; */
+  for (i = 0; i < tamanho; i++){
+    /* n = tipos[i]; */
+    for (j = 0; j<strlen(name); j++){
+      if(tipos[i] == name[i]){
+        contador++;
+      }
     }
   }
   return contador;

@@ -6,15 +6,11 @@ typedef unsigned int u_int;
 typedef unsigned char u_char;
 
 // Constantes
-#define MAXLINE 152
+#define MAXLINE 151
 #define MAXCOLS 100
 
 
 /* strcut arrays */
-typedef struct {
-  float data_linha[MAXLINE];
-  int size;  
-} MatrizIris;
 
 typedef struct{
   char   attr[1][5];
@@ -31,13 +27,6 @@ typedef struct {
   char tipo[MAXLINE];
   
 } Arrays;
-
-typedef struct array {
-  float data[MAXLINE][MAXCOLS];
-  int max;
-  int *v;
-} Array;
-
 
 
 // Função para fazer a leitura do documento e inserir dentro da estrutura `arrays`.
@@ -58,6 +47,6 @@ void sortList(float* list, int size);
 
 void atributo_name(char *matriz[151][5], char *arr[], int num_linha, int num_coluna);
 
-int ocorr(char *tipos[], char *name[], int tamanho);
+int ocorr(char tipos[MAXLINE], char name[], int tamanho);
 
 #endif

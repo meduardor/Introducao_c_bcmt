@@ -81,19 +81,7 @@ int main(void)
 
   fclose(f);
 
-  float entrada[LINHAS];
-  int total_linha_2 = sizeof(entrada)/sizeof(entrada[0]);
-  /* int total_colunas = sizeof(matriz[0])/sizeof(matriz[0][0]); */
-  for (int i = 0; i <num_linha; i++){
-    entrada[i] = atof(matriz[i][0]);
-  }
-  
-  float max_t = max_matriz(entrada, total_linha_2);
-  float min_t = min_matriz(entrada, total_linha_2);
-  printf("%d | %.1f | %.1f\n", total_linha_2, max_t, min_t);
-
-  //----------------------------------------------///
-  
+  // Arrays que recebem a primeira linha do matriz  
   char *name_one[COLUNAS];
   char *name_two[COLUNAS];
   char *name_tree[COLUNAS];
@@ -110,19 +98,11 @@ int main(void)
     }
   }
 
- 
-  /* printf("%s\n",*name_two); */
-  /* printf("%s\n",*name_tree); */
-  /* printf("%s\n",*name_four); */
-  //printf("%s\n",*name_five);
   
-  float col_comp_sep[LINHAS];
-  float col_larg_sep[LINHAS];
-  float col_comp_pet[LINHAS];
-  float col_larg_pet[LINHAS];
-  char *col_tipo[LINHAS];
+  
+  // Struct que recebe as colunas da matriz para serem processadas 
+  Arrays arr;
 
- 
   int menu = 1;
   while(menu != 3){
     
@@ -140,41 +120,52 @@ int main(void)
     case 1:{
       printf("\n\n Resumo das Estatísticas:\n");
       printf("\n --------------------------- \n");
-      for(int i = 1; i < num_linha; i++){
-	      col_comp_sep[i] = atof(matriz[i][0]);
-	      col_larg_sep[i] = atof(matriz[i][1]);
-	      col_comp_pet[i] = atof(matriz[i][2]);
-	      col_larg_pet[i] = atof(matriz[i][3]);
-	      col_tipo[i]     = matriz[i][4];
 
+      char *tipo;    
+      for(int i = 1; i < num_linha; i++){
+        arr.comp_sep[i] = atof(matriz[i][0]);
+        arr.larg_sep[i] = atof(matriz[i][1]);
+        arr.comp_pet[i] = atof(matriz[i][2]);
+        arr.larg_pet[i] = atof(matriz[i][3]);
+        tipo = arr.tipo;
+        tipo = matriz[i][4];
+        
+        // int tam = sizeof(arr.tipo)/sizeof(arr.tipo[0]);
+        // char name[] = "setosa";
+        // int setosa = ocorr(arr.tipo, name ,tam);
+        // printf("%d|%d\n", setosa, tam);
+      
+          
       }
 
+
       float maior, menor;
-     
+
+      
+
       int total_linha = sizeof(matriz)/sizeof(matriz[0]);
       int total_colunas = sizeof(matriz[0])/sizeof(matriz[0][0]);
 
       // Comprimento da Sepala
-      int tam_com_sep = sizeof(col_comp_sep)/sizeof(col_comp_sep[0]);
-      max_min(col_comp_sep, tam_com_sep, &maior, &menor);
-      float min_t = encontrarMenorValor(col_comp_sep, tam_com_sep);
+      int tam_com_sep = sizeof(arr.comp_sep)/sizeof(arr.comp_sep[0]);
+      max_min(arr.comp_sep, tam_com_sep, &maior, &menor);
       int TotalElementos = totalElemet(total_linha, total_colunas);
-      float media = cal_media(col_comp_sep,LINHAS);
-      float desvio = cal_dev_pad(col_comp_sep, LINHAS, media);
+      float media = cal_media(arr.comp_sep,LINHAS);
+      float desvio = cal_dev_pad(arr.comp_sep, LINHAS, media);
 
       
       printf("Resumo da Base Iris: %d elementos\n",TotalElementos);
       printf("%s:\n",*name_one);
-      printf("Mínimo: %.1f | %.1f\n",menor, min_t);
+      printf("Mínimo: %.1f\n",menor);
       printf("Máximo: %.1f\n",maior);      
       printf("Média: %f\n", media);
       printf("Desvio padrão: %f\n", desvio);
 
       // Largura da Sepala
-      int tam_larg_sep = sizeof(col_larg_sep)/sizeof(col_larg_sep[0]);
-      max_min(col_larg_sep, tam_larg_sep, &maior, &menor);
-      float media_larg = cal_media(col_larg_sep,LINHAS);
-      float desvio_larg = cal_dev_pad(col_larg_sep, LINHAS, media_larg);
+      int tam_larg_sep = sizeof(arr.larg_sep)/sizeof(arr.larg_sep[0]);
+      max_min(arr.larg_sep, tam_larg_sep, &maior, &menor);
+      float media_larg = cal_media(arr.larg_sep,LINHAS);
+      float desvio_larg = cal_dev_pad(arr.larg_sep, LINHAS, media_larg);
 
       printf("%s:\n",*name_two);
       printf("Mínimo: %.1f\n",menor);
@@ -183,10 +174,10 @@ int main(void)
       printf("Desvio padrão: %f\n", desvio_larg);
 
       //Comprimento da petala
-      int tam_comp_pet = sizeof(col_comp_pet)/sizeof(col_comp_pet[0]);
-      max_min(col_comp_pet, tam_comp_pet, &maior, &menor);
-      float media_pet = cal_media(col_comp_pet,LINHAS);
-      float desvio_pet = cal_dev_pad(col_comp_pet, LINHAS, media_pet);
+      int tam_comp_pet = sizeof(arr.comp_pet)/sizeof(arr.comp_pet[0]);
+      max_min(arr.comp_pet, tam_comp_pet, &maior, &menor);
+      float media_pet = cal_media(arr.comp_pet,LINHAS);
+      float desvio_pet = cal_dev_pad(arr.comp_pet, LINHAS, media_pet);
 
       printf("%s:\n",*name_tree);
       printf("Mínimo: %.1f\n",menor);
@@ -195,10 +186,10 @@ int main(void)
       printf("Desvio padrão: %f\n", desvio_pet);
 
       // Largura da petala
-      int tam_larg_pet = sizeof(col_larg_pet)/sizeof(col_larg_pet[0]);
-      max_min(col_larg_pet, tam_larg_pet, &maior, &menor);
-      float media_larg_pet = cal_media(col_larg_pet,LINHAS);
-      float desvio_larg_pet = cal_dev_pad(col_larg_pet, LINHAS, media_larg_pet);
+      int tam_larg_pet = sizeof(arr.larg_pet)/sizeof(arr.larg_pet[0]);
+      max_min(arr.larg_pet, tam_larg_pet, &maior, &menor);
+      float media_larg_pet = cal_media(arr.larg_pet,LINHAS);
+      float desvio_larg_pet = cal_dev_pad(arr.larg_pet, LINHAS, media_larg_pet);
 
       printf("%s:\n",*name_four);
       printf("Mínimo: %.1f\n",menor);
@@ -208,13 +199,14 @@ int main(void)
       printf("\n");
       
       // Tipos de IRIS
-      int tam_tipo = sizeof(col_tipo)/sizeof(col_tipo[0]);
+      int tam_tipo = sizeof(arr.tipo)/sizeof(arr.tipo[0]);
       char name_1[] = "setosa";
       char name_2[] = "versicolor";
       char name_3[] = "virginica";
-      int setosa = ocorr(col_tipo, name_1, tam_tipo);
-      int versicolor = ocorr(col_tipo, name_2, tam_tipo);
-      int virginica = ocorr(col_tipo, name_3, tam_tipo);
+      
+      int setosa = ocorr(tipo, name_1, tam_tipo);
+      int versicolor = ocorr(tipo, name_2, tam_tipo);
+      int virginica = ocorr(tipo, name_3, tam_tipo);
       //
       printf("%s", *name_five);
       printf("Setosa: %d ocorrências\n", setosa);
@@ -224,7 +216,8 @@ int main(void)
 
       break;
     }
-
+    // TODO(Marco): Fazer o case dois;
+    // NOTE: Dificuldades com os ponteiros  
     case 2:{
       printf("\n\n Classificação das Amostras:\n");
       // array_comp_sep(ARQUIVO, num_linha, num_coluna,COLUNAS,LINHAS);
