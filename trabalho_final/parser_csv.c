@@ -38,14 +38,12 @@ void insertion_sort(float *Lst, int n )
     }
     Lst[j] = atual;
   }
-
-  
+ 
 }
 
-
-int erase(char* arr, int index) {
-
-
+// Apaga um elemento char em uma string
+int erase(char* arr, int index)
+{
   int tamanho = strlen(arr);
   if (!arr) return 0;
   if (arr == 0) return 0;
@@ -62,7 +60,9 @@ int erase(char* arr, int index) {
   return 1;
 }
 
-void erase_float(float *array, int tam, int n) {
+// Apaga um elemento float dentro de um array
+void erase_float(float *array, int tam, int n)
+{
   if (n >= 0 && n < tam){
     for (int i = n; i < tam - 1; i++){
       array[i] = array[i + 1];
@@ -70,11 +70,9 @@ void erase_float(float *array, int tam, int n) {
   }
 }
 
-
-
-
-// Função para ordenar uma lista de inteiros em ordem crescente
-void sortList(float* list, int size) {
+// Função para ordenar uma lista de float  em ordem crescente
+void sortList(float* list, int size)
+{
     int i, j, temp;
     for (i = 0; i < size - 1; i++) {
         for (j = 0; j < size - i - 1; j++) {
@@ -87,63 +85,27 @@ void sortList(float* list, int size) {
     }
 }
 
-int array_comp_sep(char *file, int num_linha, int num_coluna, int coluna, int linha) {
 
-    FILE *f = fopen(file, "r");
-    if (file == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        return 1;
+void atributo_name(char *matriz[151][5], char *arr[],
+		   int num_linha, int num_coluna) {
+
+  for(int i = 0; i < num_linha; i++){
+    for(int j = 0; j < num_coluna; j++){
+      *arr[j] = *matriz[0][j];
+      
     }
+  }
+  
+}
 
-    int matrix[linha][coluna];
-    num_coluna = 0;
-    num_linha = 0;
-
-    // Ler o arquivo e armazenar os valores na matriz
-    char line[coluna];
-    while (fgets(line, sizeof(line), f)) {
-        char* token = strtok(line, ",");
-        int col = 0;
-        while (token != NULL) {
-	  matrix[num_linha][col] = (float)atof(token);
-            token = strtok(NULL, ",");
-            col++;
-        }
-        num_coluna = col;
-        num_linha++;
+int ocorr(char *tipos[], char *name[], int tamanho)
+{
+  int contador = 1; 
+  int i, ret;
+  for (int i = 0; i < tamanho; i++){
+    if(tipos[i] == name[i]){
+      contador++;
     }
-
-    // Fechar o arquivo
-    fclose(f);
-
-    // Transferir cada coluna para uma lista distinta e ordenar os valores
-    float* columns[num_linha];
-    float columnSizes[num_coluna];
-
-    for (int col = 0; col < num_coluna; col++) {
-        float* column = (float*)malloc(num_linha * sizeof(float));
-        for (int row = 0; row < num_linha; row++) {
-            column[row] = matrix[row][col];
-        }
-        columns[col] = column;
-        columnSizes[col] = num_linha;
-
-        insertion_sort(column, num_linha);
-    }
-
-    // Imprimir as listas ordenadas
-    for (int col = 0; col < num_coluna; col++) {
-        printf("Coluna %d ordenada:\n", col + 1);
-        for (int i = 0; i < columnSizes[col]; i++) {
-            printf("%f\n", columns[col][i]);
-        }
-        printf("\n");
-    }
-
-    // Liberar a memória alocada para as listas
-    for (int col = 0; col < num_coluna; col++) {
-        free(columns[col]);
-    }
-
-    return 0;
+  }
+  return contador;
 }
