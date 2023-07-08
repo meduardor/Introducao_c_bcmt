@@ -1,29 +1,21 @@
 #if !defined (DATABASE_H)
 #define DATABASE_H
 
-
-#define MAX_ROWS 755
-#define MAX_COLS 200
-
-
-typedef struct {
-    double data[MAX_ROWS];
-    int size;
-} ColumnData;
-
-typedef struct {
-        ColumnData data[MAX_COLS];
-        int size;
-    } CSVData;
+#include "parser_csv.h"
 
 
 // Funções     
-void data_set();
 
-double calc_moda_iris();
-double calc_mediana_iris();
-double calc_media_iris();
-double calc_desvio_padrao_iris();
+float cal_media(float arr[], int size);
+float cal_dev_pad(float arr[], int tam, float media);
+
+int totalElemet(int total_linha, int total_colunas);
+
+void max_min(float arr[], int tam, float *max, float *min);
+float tam_list(float arr[]);
+
+float max_matriz(float arr[], int tam);
+float min_matriz(float arr[], int tam);
 
 
 #endif
